@@ -1,1 +1,39 @@
 <p>profile works!</p>
+<div>
+    <input [(ngModel)]="profile.nickname" placeholder="nickname" />
+</div>
+<div>
+    <input [(ngModel)]="profile.email" placeholder="email" />
+</div>
+<div>
+    <button (click)="onPutProfile()">PutProfile</button>
+</div>
+<div>
+    <label>NewMessage:
+        <input [(ngModel)]="messageText" placeholder="password" />
+    </label>
+</div>
+<div>
+    <button (click)="onNewMessageClick()">newMessage</button>
+</div>
+<ng-template [ngIf]="editMessage">
+<div>
+    <label>EditMessage:
+        <input [(ngModel)]="editMessage.text" placeholder="password" />
+    </label>
+    </div>
+    <div>
+        <button (click)="onEditMessage()">ComfirmEditMessage</button>
+    </div>
+</ng-template>
+
+
+<div *ngFor="let message of messages">
+    {{message.text}}
+    <div>
+        <button (click)="onSelect(message)">editMessage</button>
+    </div>
+    <div>
+        <button (click)="onDeleteMessage(message)">deleteMessage</button>
+    </div>
+</div>

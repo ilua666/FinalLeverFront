@@ -44,14 +44,24 @@ export class LoginComponent implements OnInit {
 
   onSignOutClick() {
     const auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut()
+    auth2.signOut();
+    this.googleUser = undefined;
   }
 
+  googleUser: any
   onSignIn(googleUser) {
-    console.log('gere');
-    var profile = googleUser.getBasicProfile();
-    const id_token = googleUser.getAuthResponse().id_token;
-    this.authService.googleLogin(id_token)
-    console.log(googleUser);
+    this.googleUser = googleUser
+    // var profile = googleUser.getBasicProfile();
+    // const id_token = googleUser.getAuthResponse().id_token;
+    // this.authService.googleLogin(id_token)
+    // console.log(googleUser);
+  }
+  onSignInClick(){
+    if(this.googleUser){
+      var profile = this.googleUser.getBasicProfile();
+      const id_token = this.googleUser.getAuthResponse().id_token;
+      this.authService.googleLogin(id_token)
+      console.log(this.googleUser);
+    }
   }
 }
